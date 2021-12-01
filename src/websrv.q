@@ -82,7 +82,8 @@
 
     if[.type.isInfinite urlInfo`version;
         latest:select from .websrv.endpoints where version = (max; version) fby ([] library; relativeUrl);
-        match:latest urlInfo`library`version`relativeUrl;
+        latest:`library`relativeUrl xkey delete version from latest;
+        match:latest urlInfo`library`relativeUrl;
     ];
 
 
